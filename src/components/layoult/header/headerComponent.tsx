@@ -1,6 +1,4 @@
 import { Header } from "./header"
-
-
 const HeaderComponent = ()=>{
     return(
         <Header.root>
