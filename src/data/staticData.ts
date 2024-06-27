@@ -10,44 +10,44 @@ export const flags:flagProps[] = [
    {
     flagId:1,
     flagAbreviation:"br",
-    flagName:"Brazil",
+    flagName:"brazil",
     flagUrl:"/flags/Brazil.webp",
     flagPageUrl:"/humans/brazil/"
    },
    {
     flagId:2,
     flagAbreviation:"us",
-    flagName:"United States",
+    flagName:"usa",
     flagUrl:"/flags/us.svg",
-    flagPageUrl:"/humans/unitedstates/"
+    flagPageUrl:"/humans/usa/"
    },
    {
     flagId:3,
     flagAbreviation:"de",
-    flagName:"Germany",
+    flagName:"germany",
     flagUrl:"/flags/Germany.svg",
     flagPageUrl:"/humans/germany/"
    },
    {
     flagId:3,
     flagAbreviation:"es",
-    flagName:"Spain",
+    flagName:"spain",
     flagUrl:"/flags/Spain.svg",
     flagPageUrl:"/humans/spain/"
    },
    {
     flagId:3,
     flagAbreviation:"de",
-    flagName:"France",
+    flagName:"france",
     flagUrl:"/flags/France.svg",
     flagPageUrl:"/humans/france/"
    },
    {
     flagId:3,
     flagAbreviation:"gb",
-    flagName:"United Kingdom",
+    flagName:"united-kingdom",
     flagUrl:"/flags/United_Kingdom.svg",
-    flagPageUrl:"/humans/unitedkingdom/"
+    flagPageUrl:"/humans/united-kingdom/"
    }
 ]
 
