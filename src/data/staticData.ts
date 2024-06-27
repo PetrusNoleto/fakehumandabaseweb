@@ -29,21 +29,21 @@ export const flags:flagProps[] = [
     flagPageUrl:"/humans/germany/"
    },
    {
-    flagId:3,
+    flagId:4,
     flagAbreviation:"es",
     flagName:"spain",
     flagUrl:"/flags/Spain.svg",
     flagPageUrl:"/humans/spain/"
    },
    {
-    flagId:3,
+    flagId:5,
     flagAbreviation:"de",
     flagName:"france",
     flagUrl:"/flags/France.svg",
     flagPageUrl:"/humans/france/"
    },
    {
-    flagId:3,
+    flagId:6,
     flagAbreviation:"gb",
     flagName:"united-kingdom",
     flagUrl:"/flags/United_Kingdom.svg",
