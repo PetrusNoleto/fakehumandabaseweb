@@ -17,15 +17,31 @@ interface human {
 
 
 export default function HumanCountryPage(){
-    const getCountry = location.pathname
-    const splitCountry = getCountry.split('/')    
+    const [currentPage, setCurrentPage] = useState(1);
     const [countryName,setCountryName] = useState("")
     const [countryAbreviation,setCountryAbreviation]= useState("")
     const [countryImage,setCountryImage] = useState("")
     const [humansList,setHumansList] = useState<human[] | []>([])
+    const getCountry = location.pathname
+    const splitCountry = getCountry.split('/')
     const getFlagDataByFlagName = flags.find((flaglist) => flaglist.flagName === countryName)
     const humansPopulation = 600
+    const itemsPageLimit = 60
+    const totalPages = Math.ceil(humansList.length / itemsPageLimit);
+    const startIndex = (currentPage - 1) * itemsPageLimit;
+    const endIndex = startIndex + itemsPageLimit;
+    const currentItems = humansList.slice(startIndex, endIndex);  
     
+    const goToNextPage = () => {
+        setCurrentPage((prev) => (prev < totalPages ? prev + 1 : prev));
+        location.replace("#productStartList")
+      };
+    
+      const goToPreviousPage = () => {
+        setCurrentPage((prev) => (prev > 1 ? prev - 1 : prev));
+        location.replace("#productStartList")
+      };
+
     const getHumans = async() =>{
         const humans = await axios.get(`https://randomuser.me/api/?nat=${countryAbreviation}&results=${humansPopulation}`)
         const humansData = await humans.data
@@ -34,8 +50,6 @@ export default function HumanCountryPage(){
         localStorage.setItem(`fakehumans${countryName}`,JSON.stringify(results))
         return results
     }
-
-
 
     useEffect(()=>{
         if (getFlagDataByFlagName !== undefined){
@@ -50,9 +64,6 @@ export default function HumanCountryPage(){
         }
         setCountryName(splitCountry[2])
     },[countryName])
-    
-    
-    console.log(humansList)
     return(
         <div>
           <HeaderComponent/>
@@ -61,14 +72,13 @@ export default function HumanCountryPage(){
                     <Image src ={countryImage} alt={`flag of ${countryName}`} fill={true} className="p-3 "/>
                 </div>
                 <h1 className="text-white font-bold uppercase text-3xl">{countryName}</h1>
-                
-
 
           </section>  
           {humansList.length > 0 ?
-            <ul className="flex justify-around flex-wrap gap-3 p-3">
+            <>
+            <ul className="flex justify-around flex-wrap gap-3 p-3" id="productStartList">
                 <>
-                    {humansList.map((human)=>{
+                    {currentItems.map((human)=>{
                         return(
                             <>
                                 <li key={human.id.value} className="w-[280px] h-auto bg-fakeDark shadow-lg rounded-md p-12 flex flex-col gap-3 items-center relative">
@@ -90,14 +100,40 @@ export default function HumanCountryPage(){
                     })}
                 </>
             </ul>
+            
+            
+            <ul className="flex gap-3 justify-end p-3">
+            {totalPages === 1 ?
+                <></>
+                :
+                <li>
+                    <div className="flex gap-3 justify-end">
+                        <button
+                        className="bg-[#141414] h-[50px] flex justify-center items-center text-white shadow-lg p-6 rounded-lg"
+                        onClick={goToPreviousPage}
+                        disabled={currentPage === 1}
+                        >
+                        Anterior
+                        </button>
 
+                        <span className="bg-[#141414] h-[50px] flex justify-center items-center text-white shadow-lg p-6 rounded-lg">Página {currentPage} de {totalPages}</span>
+
+                        <button
+                        className="bg-[#141414] h-[50px] flex justify-center items-center text-white shadow-lg p-6 rounded-lg"
+                        onClick={goToNextPage}
+                        
+                        disabled={currentPage === totalPages}
+                        >
+                        Próximo
+                        </button>
+                    </div>
+                </li>
+          }
+        </ul>
+            </>
             :
             <>sem humanos</>
             }
-         
-
-
-
         </div>
     )
 }
