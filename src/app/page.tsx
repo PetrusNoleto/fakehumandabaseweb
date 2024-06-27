@@ -19,7 +19,7 @@ return (
         <>
          {staticFlagsList.map((flag)=>{
              return(
-              <div className="w-[240px] h-[170px] relative">
+              <div key={flag.flagId} className="w-[240px] h-[170px] relative">
                 <ShowFlag flagName={flag.flagName} flagSrc={flag.flagUrl} />
                 <a href={flag.flagPageUrl}>ir para {flag.flagName} </a>
               </div>
