@@ -1,6 +1,7 @@
 "use client"
 
 import ShowFlag from "@/components/flag/showflag";
+import HeaderComponent from "@/components/layoult/header/headerComponent";
 import { flagProps, flags } from "@/data/staticData";
 import { useEffect, useState } from "react";
 
@@ -13,6 +14,7 @@ export default function Home() {
   },[])
 return (
     <main className="flex gap-3">
+      <HeaderComponent/>
       {staticFlagsList.length > 0 ?  
         <>
          {staticFlagsList.map((flag)=>{
