@@ -65,7 +65,7 @@ export default function HumanCountryPage(){
         setCountryName(splitCountry[2])
     },[countryName])
     return(
-        <div>
+        <div className="relative"> 
           <HeaderComponent/>
           <section className="w-full h-[460px] bg-black p-6 flex flex-col justify-center items-center gap-3 pt-[75px]">
                 <div className="relative w-[420px] h-[220px] ">
@@ -132,8 +132,16 @@ export default function HumanCountryPage(){
         </ul>
             </>
             :
-            <>sem humanos</>
-            }
+            <div className="absolute w-screen h-screen left-0 top-0 flex justify-center flex-col gap-3 items-center bg-black/75 -z-10  text-white pt-52">
+                <div className="relative w-12 h-12 border-4 rounded-full border-orange-500 animate-spin ">
+                    <div className="absolute top-0 left-0 w-10 h-10 border-4 rounded-full border-orange-600 animate-pulse">
+                        <div className=" top-0 left-0 w-8 h-8 border-4 rounded-full border-white animate-ping">
+                    </div>  
+                   </div>
+                </div>
+                carregando humanos
+            </div>
+        }
         </div>
     )
 }
