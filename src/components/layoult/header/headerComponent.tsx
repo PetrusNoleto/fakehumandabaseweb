@@ -1,7 +1,12 @@
+import React from "react"
 import { Header } from "./header"
-const HeaderComponent = ()=>{
+import { headerProps } from "./headerRoot"
+
+
+
+const HeaderComponent:React.FC<headerProps> = ({position})=>{
     return(
-        <Header.root>
+        <Header.root position={position}>
             <Header.brand siteName={`fakehumandatabase`} />
             <div className="flex">
                 <Header.links/>

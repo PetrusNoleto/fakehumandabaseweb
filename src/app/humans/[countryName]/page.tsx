@@ -4,15 +4,23 @@ import HeaderComponent from "@/components/layoult/header/headerComponent"
 import { flags } from "@/data/staticData"
 import axios from "axios"
 import Image from "next/image"
+import Link from "next/link"
 import { useEffect, useState } from "react"
 
 
-interface human {
-    id:{value:string};
+export interface human {
+    id:{name:string,value:string};
     email:string;
     phone:string;
-    name:{first:string,last:string}
-    picture:{thumbnail:string,medium:string,large:string}
+    cell:string;
+    nat:string;
+    dob:{age:number,date:string};
+    gender:string;
+    name:{first:string,last:string};
+    picture:{thumbnail:string,medium:string,large:string};
+    location:{city:string,country:string,postcode:number,state:string,street:{name:string,number:number}};
+    coordinates:{latitude:string,longitude:string};
+    login:{username:string,password:string};
 }
 
 
@@ -31,7 +39,6 @@ export default function HumanCountryPage(){
     const startIndex = (currentPage - 1) * itemsPageLimit;
     const endIndex = startIndex + itemsPageLimit;
     const currentItems = humansList.slice(startIndex, endIndex);  
-    
     const goToNextPage = () => {
         setCurrentPage((prev) => (prev < totalPages ? prev + 1 : prev));
         location.replace("#productStartList")
@@ -91,7 +98,7 @@ export default function HumanCountryPage(){
                                     <div className="flex flex-col gap-3">
                                         <Image src={human.picture.large} alt="" width={128} height={128} className="rounded-full border-4 border-fakeOrange"/>
                                         <h3 className="text-white text-center"><span>{human.name.first}</span> <span>{human.name.last}</span></h3>
-                                        <button className="bg-fakeOrange p-3 text-sm font-bold text-white hover:bg-black duration-300 rounded-lg">ver dados</button>
+                                        <Link href={`/humans/${countryName}/${human.email}`} target="_blank" className="flex justify-center items-center bg-fakeOrange p-3 text-sm font-bold text-white hover:bg-black duration-300 rounded-lg" >ver dados</Link>
                                     </div>
                                 </li>
                             </>
