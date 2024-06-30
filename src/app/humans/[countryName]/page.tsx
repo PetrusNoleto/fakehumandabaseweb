@@ -70,7 +70,7 @@ export default function HumanCountryPage(){
             }  
         }
         setCountryName(splitCountry[2])
-    },[countryName])
+    },[countryName,countryAbreviation])
     return(
         <div className="relative"> 
           <HeaderComponent/>
