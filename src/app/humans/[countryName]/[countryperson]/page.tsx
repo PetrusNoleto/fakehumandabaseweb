@@ -6,24 +6,25 @@ import HeaderComponent from "@/components/layoult/header/headerComponent"
 import Image from "next/image"
 
 export default function HumanPage(){
-    const getCountry = location.pathname
-    const splitCountry = getCountry.split('/')
-    const [humanData,setHumanData] = useState<human>({
-        id:{name:"string",value:"string"},
-        email:"string",
-        phone:"string",
-        cell:"string",
-        nat:"string",
-        dob:{age:0,date:"string"},
-        gender:"string",
-        name:{first:"string",last:"string"},
-        picture:{thumbnail:"/",medium:"/",large:"/"},
-        location:{city:"string",country:"string",postcode:0,state:"string",street:{name:"string",number:0}},
-        coordinates:{latitude:"string",longitude:"string"},
-        login:{username:"string",password:"string"},
-    })
+    const [country,setCountry] = useState("")
+    const splitCountry = country.split('/')
     const  requestEmail = splitCountry[3]
     const requestCountry = splitCountry[2]
+    const [humanData,setHumanData] = useState<human>({
+        id:{name:"carregando",value:"carregando"},
+        email:"carregando",
+        phone:"carregando",
+        cell:"carregando",
+        nat:"carregando",
+        dob:{age:0,date:"carregando"},
+        gender:"carregando",
+        name:{first:"carregando",last:"carregando"},
+        picture:{thumbnail:`/flags/${requestCountry}.svg`,medium:`/flags/${requestCountry}.svg`,large:`/flags/${requestCountry}.svg`},
+        location:{city:"carregando",country:"strcarregandoing",postcode:0,state:"carregando",street:{name:"carregando",number:0}},
+        coordinates:{latitude:"stcarregandoring",longitude:"carregando"},
+        login:{username:"carregando",password:"carregando"},
+    })
+
     
     const getHumanData = () => {
         const getUserData =  localStorage.getItem(`fakehumans${requestCountry}`) as string | null
@@ -33,18 +34,14 @@ export default function HumanPage(){
             console.log(findHuman)
             setHumanData(findHuman as human)
           }
-          
-
-         
     }
-    
-
     console.log(humanData.picture.large)
     useEffect(()=>{
+        const getCountry = location.pathname
+        setCountry(getCountry)
         getHumanData()
-        console.log(humanData)
 
-    },[])
+    },[country])
     return(
         <div>
             <HeaderComponent position="static"/>
